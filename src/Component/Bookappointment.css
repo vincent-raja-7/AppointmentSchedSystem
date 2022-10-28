@@ -1,0 +1,9 @@
+.card text-center{
+    height: 100%;
+}
+#car{
+    background-color: #508bfc;
+}
+.card-title{
+    width: 100%;margin:0 auto;
+}

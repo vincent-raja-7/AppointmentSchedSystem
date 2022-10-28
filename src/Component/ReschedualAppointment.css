@@ -1,0 +1,22 @@
+.card text-center{
+    height: 100%;
+
+}
+.vh-100{
+    background-color: #508bfc;
+}
+#car{
+    background-color: #508bfc;
+
+}
+.card-title{
+    color: white;
+}
+
+.card{
+    width: 100%;
+    margin:0 auto;
+    
+    
+
+}
