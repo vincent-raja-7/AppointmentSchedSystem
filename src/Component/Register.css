@@ -4,3 +4,7 @@
 .card shadow-2-strong{
     border-radius: 1rem;
 }
+
+.signin{
+    cursor: pointer;
+}

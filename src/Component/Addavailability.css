@@ -4,3 +4,6 @@
 .card shadow-2-strong{
     border-radius: 1rem
 }
+.addavailability{
+    width: 60% !important;
+}

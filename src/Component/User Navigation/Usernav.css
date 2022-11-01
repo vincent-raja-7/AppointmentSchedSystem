@@ -1,0 +1,15 @@
+    
+/* styling navlist anchor element */
+.navico 
+{
+    color: #f2f2f2;
+    font-size: 1.5em;
+  
+}
+/* hover effect of navlist anchor element */
+.navico:hover {
+    cursor: pointer;
+}
+.navtitle{
+    color: white;
+}
