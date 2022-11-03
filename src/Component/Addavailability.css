@@ -7,3 +7,14 @@
 .addavailability{
     width: 60% !important;
 }
+.addsuccess{
+    color: green;
+    display: none;
+}
+.plusbtn{
+    font-size: 2em;
+    display: none;
+}
+.plusbtn:hover{
+    cursor: pointer;
+}

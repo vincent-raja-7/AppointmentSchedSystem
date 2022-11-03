@@ -22,18 +22,19 @@ const Usernav = () => {
     nav('/Cart')
   }
   function logout(){
+    sessionStorage.clear()
     nav('/')
   }
 
   return (
     <>
-    <nav class="navbar dark-dark bg-dark">
-    <a class="navbar-brand mx-3 navtitle">Appointment Scheduling System</a>
-    <form class="form-inline">
+    <nav className="navbar dark-dark bg-dark">
+    <a className="navbar-brand mx-3 navtitle">Appointment Scheduling System</a>
+    <form className="form-inline">
       
-        <a onClick={()=>navigateProfile()}><i class="fas fa-user-circle mx-3 navico"></i></a>
-      <a onClick={()=>navigateNotification()}><i class="fas fa-bell mx-3 navico"></i></a>
-      <a onClick={()=>logout()}><i class="fas fa-sign-out-alt mx-3 navico"></i></a>
+        <a onClick={()=>navigateProfile()}><i className="fas fa-user-circle mx-3 navico"></i></a>
+      <a onClick={()=>navigateNotification()}><i className="fas fa-bell mx-3 navico"></i></a>
+      <a onClick={()=>logout()}><i className="fas fa-sign-out-alt mx-3 navico"></i></a>
       
     </form>
   </nav>

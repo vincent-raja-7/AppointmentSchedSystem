@@ -1,3 +1,15 @@
 .slot{
     width: 50% !important;
 }
+.booksucess2{
+    color: green;
+    display: none;
+}
+.booksucess1{
+    color: green;
+    display: none;
+}
+.booksucess3{
+    color: green;
+    display: none;
+}

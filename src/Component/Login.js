@@ -16,7 +16,9 @@ function Login() {
     const res = await axios.post('http://localhost:59316/api/User/Login', user)
     console.log(res.data)
     setUser(username)
+       sessionStorage.setItem("user",username)
         setToken(res.data.token)
+        sessionStorage.setItem("t",res.data.token)
         if(username === 'admin')
         {
           setRole("Admin")

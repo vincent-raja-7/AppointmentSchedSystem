@@ -9,6 +9,14 @@ function UserPanel() {
         nav("/BookAppointment")
     }
 
+    function navigateCancelAppointment(){
+        nav("/CancelAppointment")
+    }
+
+    function navigateRescheduleAppointment(){
+        nav("/RescheduleAppointment")
+    }
+
     return (
         <div>
             <Usernav/>
@@ -28,18 +36,16 @@ function UserPanel() {
 
                                     <button
                                         className="btn btn-outline-primary me-1 flex-grow-1"
-                                        type="submit">
+                                        type="submit" onClick={()=>navigateRescheduleAppointment()}>
                                         Reschedual Appointment
                                     </button>
 
                                     <button
                                         className="btn btn-outline-primary me-1 flex-grow-1"
                                         type="submit"
-                                        color="white">
+                                        color="white" onClick={()=>navigateCancelAppointment()}>
                                         Cancel Appointment
                                     </button>
-
-                                    <hr className="my-4" />
                                 </div>
                             </div>
                         </div>

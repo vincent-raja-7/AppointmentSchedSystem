@@ -1,9 +1,6 @@
 import React from "react";
-import './ReschedualAppointment'
-
-
-class ReschedualAppointment extends React.Component {
-  render() {
+import './ReschedualAppointment.css';
+function ReschedualAppointment(props) {
     return (
       <div class="vh-100">
         <div class="card text-center ">
@@ -65,5 +62,4 @@ class ReschedualAppointment extends React.Component {
       </div>
     );
   }
-}
 export default ReschedualAppointment;

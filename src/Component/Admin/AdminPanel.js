@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Adminnav from '../Admin Navigation/Adminnav';
 import './AdminPanel.css'
 function AdminPanel() {
     
@@ -11,6 +12,7 @@ function AdminPanel() {
 
     return (
         <div>
+            <Adminnav/>
             <div className="vh-100">
                 <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-40">

@@ -16,12 +16,28 @@ function Bookappointment(props) {
     slot_3 : null
    } )
 
+   const disablePastDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate() + 1).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+};
+
   async function getSlots() {
-    console.log(date)
-    const r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + token } })
-    console.log(r.data)
+    const r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
     setBook(r.data)
-    document.getElementById("slots").style.display = "block"
+    if(r.status === 204)
+    {
+      console.log(r.status)
+      document.getElementById("slots").style.display = "none"
+      document.getElementById("noslot").style.display = "block"
+    }
+    else
+    {
+      document.getElementById("slots").style.display = "block"
+      document.getElementById("noslot").style.display = "none"
+    }
   }
 
   return (
@@ -42,18 +58,22 @@ function Bookappointment(props) {
                       placeholder="Select the date *"
                       onFocus={(e) => e.currentTarget.type = "date"}
                       onBlur={(e) => e.currentTarget.type = "text"}
-
+                      min={disablePastDate()}
                       value={date} onChange={(e) => setDate(e.target.value)}
                     />
 
                   </div>
-                  <button className="btn btn-primary btn-lg btn-block mt-3" type="submit" onClick={() => getSlots()}>Get Slots</button>
+                  <button className="btn btn-primary btn-lg btn-block mt-3 mb-3" type="submit" onClick={() => getSlots()}>Get Slots</button>
+                  <div id='noslot'>
+              <b>This date is not Available !!! Please select another date.</b>
+            </div>
                 </div>
               </div>
             </div>
             <div className='slots' id='slots'>
               <Cards data={book} />
             </div>
+            
           </div>
         </div>
       </div>

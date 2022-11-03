@@ -8,3 +8,7 @@
 .slots{
     display: none;
 }
+#noslot{
+   display: none;
+   color: red;
+}

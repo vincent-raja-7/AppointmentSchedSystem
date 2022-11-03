@@ -30,6 +30,8 @@ function App() {
         <Route path="/Register" element={<Register/>}></Route>
         <Route path="/UserPanel" element={<UserPanel/>}></Route>
         <Route path="/BookAppointment" element={<Bookappointment/>}></Route>
+        <Route path="/CancelAppointment" element={<CancelAppointment/>}></Route>
+        <Route path="/RescheduleAppointment" element={<ReschedualAppointment/>}></Route>
         <Route path="/AdminPanel" element={<AdminPanel/>}></Route>
         <Route path="Admin/AddAvailability" element={<Addavailability/>}></Route>
      </Routes>
