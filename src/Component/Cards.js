@@ -4,6 +4,12 @@ import './Cards.css'
 
 function Cards(data) {
     const book = data
+    var oldDate = null
+    if(data.data.oldId === undefined)
+       console.log("Yes")
+    else
+       console.log(data.data.oldDate)
+    const path=window.location.pathname
     var slot_1 = false, slot_2 = false, slot_3 = false
     if (book.data.slot_1 != null)
         slot_1 = true
@@ -82,15 +88,21 @@ function Cards(data) {
     }
     
     function addEnty(id,slot,date){
-        let entry = {
-             date: date,
-             slot : slot,
-             status: "Sucess",
-             note : "You have booked an Appointment",
-             notification : "false",
-             userId : id
+        if(path==='/RescheduleAppointment'){
+              console.log(oldDate)
         }
-        axios.post('http://localhost:59316/api/AppEntry/Add', entry,{ headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
+        else{
+
+            let entry = {
+                date: date,
+                slot : slot,
+                status: "Sucess",
+                note : "You have booked an Appointment",
+                notification : "false",
+                userId : id
+           }
+           axios.post('http://localhost:59316/api/AppEntry/Add', entry,{ headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
+        }
     }
 
     return (
@@ -103,7 +115,8 @@ function Cards(data) {
                             <p>9.00 A.M to 12.00 P.M</p>
                             {book.data.slot_1 === null ?
                                 <><button type="button" className="btn btn-primary" id='slot1' onClick={() => slot1()}>Book</button>
-                                    <p className='booksucess1' id='booksuccess1'><b>Appointment Booked Successfully !!!</b></p></>
+                                  {path==='/RescheduleAppointment'?<><p className='booksucess1' id='booksuccess1'><b>Appointment Rescheduled Successfully !!!</b></p></>:<><p className='booksucess1' id='booksuccess1'><b>Appointment Booked Successfully !!!</b></p></>}
+                                    </>
                                 :
                                 <><p>Already Booked</p></>
                             }
@@ -117,7 +130,8 @@ function Cards(data) {
                             <p>1.00 P.M to 4.00 P.M</p>
                             {book.data.slot_2 === null ?
                                 <><button type="button" className="btn btn-primary" id='slot2' onClick={() => slot2()}>Book</button>
-                                    <p className='booksucess2' id='booksuccess2'><b>Appointment Booked Successfully !!!</b></p></>
+                                    {path==='/RescheduleAppointment'?<><p className='booksucess2' id='booksuccess2'><b>Appointment Rescheduled Successfully !!!</b></p></>:<><p className='booksucess2' id='booksuccess2'><b>Appointment Booked Successfully !!!</b></p></>}
+                                    </>
                                 :
                                 <><p>Already Booked</p></>
                             }
@@ -131,7 +145,8 @@ function Cards(data) {
                             <p>5.00 P.M to 8.00 P.M</p>
                             {book.data.slot_3 === null ?
                                 <><button type="button" className="btn btn-primary" id='slot3' onClick={() => slot3()}>Book</button>
-                                    <p className='booksucess3' id='booksuccess3'><b>Appointment Booked Successfully !!!</b></p></>
+                                    {path==='/RescheduleAppointment'?<><p className='booksucess3' id='booksuccess3'><b>Appointment Rescheduled Successfully !!!</b></p></>:<><p className='booksucess3' id='booksuccess3'><b>Appointment Booked Successfully !!!</b></p></>}
+                                    </>
                                 :
                                 <><p>Already Booked</p></>
                             }

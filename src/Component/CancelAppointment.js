@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import './CancelAppointment.css';
 import Usernav from "./User Navigation/Usernav";
-function CancelAppointment(props) {
+function CancelAppointment() {
 
   const [appointments,setAppointments] =useState("")
 
@@ -22,6 +22,19 @@ async function cancel(date,slot,id){
      r.data.slot_3=null
     axios.put('http://localhost:59316/api/Booking/Update', r.data, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
     document.getElementById(id+" cancel").style.display="none"
+   const result = await axios.get(`http://localhost:59316/api/User/GetUserId?username=${sessionStorage.getItem("user")}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
+   let entry={
+        id:id,
+        date: date,
+        slot: slot,
+        status: "Cancel",
+        note: "You have Cancelled the Appointment",
+        notification: "false",
+        userId: result.data
+    }
+    console.log(entry)
+    var rs=axios.put('http://localhost:59316/api/AppEntry/Update', entry, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
+    console.log(rs.data)
   }
 
 

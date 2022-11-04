@@ -4,12 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const Usernav = () => {
   var nav=useNavigate()
   function navigateProfile(){
-    if(!((sessionStorage.getItem("c")==='User')||(sessionStorage.getItem("c")==='Seller')||sessionStorage.getItem("c")==='Admin'))
-    {
-         alert("You need to login first")
-         nav('/Login')
-    }
-    else
     nav('/Profile')
   }
   function navigateNotification(){

@@ -1,11 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Bookappointment.css'
 import { UserContext } from '../App';
 import axios from 'axios';
 import { Button } from 'bootstrap';
 import Usernav from './User Navigation/Usernav';
 import Cards from './Cards';
-function Bookappointment(props) {
+import { useLocation } from 'react-router-dom';
+function Bookappointment() {
+  const location = useLocation();
+  const path= window.location.pathname
   const [date, setDate] = useState("");
   const { user, token } = useContext(UserContext)
   const [book, setBook] = useState({
@@ -39,7 +42,15 @@ function Bookappointment(props) {
       document.getElementById("noslot").style.display = "none"
     }
   }
+  
+  function cancel (){
+        if(location.state.details != undefined)
+        console.log(location.state.details)
+  }
 
+  useEffect(()=>{
+    cancel()
+  })
   return (
     <div>
       <Usernav />

@@ -35,14 +35,6 @@ function AdminPanel() {
                                         Show All Appointment
                                     </button>
 
-                                    <button
-                                        className="btn btn-outline-primary me-1 flex-grow-1"
-                                        type="submit"
-                                        color="white"
-                                    >
-                                        Update Availability
-                                    </button>
-
                                     <hr className="my-4" />
                                 </div>
                             </div>
