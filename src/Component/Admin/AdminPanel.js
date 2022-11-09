@@ -18,7 +18,7 @@ function AdminPanel() {
                     <div className="row d-flex justify-content-center align-items-center h-40">
                         <div className="col-20 col-md-11 col-lg-25 col-xl-15">
                             <div className="card shadow-2-strong">
-                                <div className="card-body p-15 text-center">
+                                <div className="card-body p-15 text-center mb-3">
                                     <h3 className="mb-5">Welcome Admin</h3>
 
                                     <button
@@ -29,13 +29,11 @@ function AdminPanel() {
                                     </button>
 
                                     <button
-                                        className="btn btn-outline-primary me-1 flex-grow-1"
+                                        className="btn mx-3 btn-outline-primary me-1 flex-grow-1"
                                         type="submit"
                                     >
                                         Show All Appointment
                                     </button>
-
-                                    <hr className="my-4" />
                                 </div>
                             </div>
                         </div>

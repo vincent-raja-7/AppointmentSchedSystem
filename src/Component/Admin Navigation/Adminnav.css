@@ -10,6 +10,13 @@
 .navico:hover {
     cursor: pointer;
 }
+
+
 .navtitle{
     color: white;
+    font-weight: bold;
+}
+
+.navtitle:hover{
+   cursor: pointer;
 }

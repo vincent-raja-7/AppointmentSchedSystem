@@ -6,44 +6,27 @@ import Cards from "./Cards";
 function RescheduleAppointment() {
     const [appointments,setAppointments] =useState("")
     const [date, setDate] = useState("");
+    const [oldDate, setOldDate] = useState("")
+    const [oldId, setOldId] = useState("")
+    const [oldSlot, setOldSlot] = useState("")
     async function getAppointments(){
       const r= await axios.get(`http://localhost:59316/api/AppEntry/FindByUserAndStatus?user=${sessionStorage.getItem("user")}&status=Sucess`,{ headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
-      
       setAppointments(r.data)
+      if(r.data.length === 0){
+        document.getElementById("nodata").style.display="block"
+        document.getElementById("restable").style.display="none"
+      }
     }
+      
     
     function reschedule(date,slot,id){
-         book.id = id
-         book.oldSlot = slot
-         book.oldDate = date
+          setOldDate(date)
+          setOldId(id)
+          setOldSlot(slot)
          document.getElementById("rescheduledate").style.display="block"
          document.getElementById("rescheduletable").style.display="none"
     }
-
-    async function cancel(date,slot,id){
-      const r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
-       if(slot===1)
-         r.data.slot_1=null
-       if(slot===2)
-         r.data.slot_2=null
-       if(slot===3)
-         r.data.slot_3=null
-        axios.put('http://localhost:59316/api/Booking/Update', r.data, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
-        document.getElementById(id+" cancel").style.display="none"
-       const result = await axios.get(`http://localhost:59316/api/User/GetUserId?username=${sessionStorage.getItem("user")}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
-       let entry={
-            id:id,
-            date: date,
-            slot: slot,
-            status: "Cancel",
-            note: "You have Cancelled the Appointment",
-            notification: "false",
-            userId: result.data
-        }
-        var rs=axios.put('http://localhost:59316/api/AppEntry/Update', entry, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
-        
-      }
-    
+      
       var [book, setBook] = useState({
         date : "",
         id : 0,
@@ -65,7 +48,18 @@ function RescheduleAppointment() {
     
       async function getSlots() {
         const r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
-        setBook(r.data)
+        var details={
+          date : r.data.date,
+          id : r.data.id,
+          slot_1 : r.data.slot_1,
+          slot_2 : r.data.slot_2,
+          slot_3 : r.data.slot_3,
+          oldDate: oldDate,
+          oldSlot: oldSlot,
+          oldId: oldId
+        }
+        
+        setBook(details)
         if(r.status === 204)
         {
         
@@ -87,11 +81,11 @@ function RescheduleAppointment() {
         <Usernav/>
         <div className="vh-100" id="rescheduletable">
             <div className="text-center ">
-             
-             
                 <h3 className="card-title mb-3 mt-3 ">
                   Reschedule Appointment
                 </h3>
+                <div className="nodata" id="nodata"><h2>No Bookings !!!</h2></div>
+                <div className="table" id="restable">
                       <table className="table table-dark table-striped">
                         <thead>
                           <tr>
@@ -115,6 +109,7 @@ function RescheduleAppointment() {
                         </tbody>
                       </table>
                     </div>
+                  </div>
                   </div>
                   <div id="rescheduledate">
                   <div className="vh-200">

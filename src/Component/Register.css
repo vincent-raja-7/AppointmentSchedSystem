@@ -8,3 +8,12 @@
 .signin{
     cursor: pointer;
 }
+
+.Err{
+    color: red;
+    font-weight: bold;
+}
+
+#passRegX{
+    display: none;
+}

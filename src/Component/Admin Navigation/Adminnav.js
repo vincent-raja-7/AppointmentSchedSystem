@@ -11,7 +11,7 @@ function Adminnav() {
    return (
     <>
     <nav className="navbar dark-dark bg-dark">
-    <a className="navbar-brand mx-3 navtitle">Appointment Scheduling System</a>
+    <p className="m-2 mx-3 navtitle" onClick={()=>nav("/AdminPanel")}>Appointment Scheduling System</p>
     <form className="form-inline">
       
       <a onClick={()=>logout()}><i className="fas fa-sign-out-alt mx-3 navico"></i></a>
