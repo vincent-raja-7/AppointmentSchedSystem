@@ -19,13 +19,25 @@ function CancelAppointment() {
   }
 }
 
-  async function cancel(date, slot, id) {
-    const r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
+  async function cancel(date, slot, id, r_date, r_slot) {
+    var r=""
+    console.log(r_date)
+    console.log(r_slot)
+    if(r_date === null)
+      r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
+    else
+      r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${r_date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
     if (slot === 1)
       r.data.slot_1 = null
     if (slot === 2)
       r.data.slot_2 = null
     if (slot === 3)
+      r.data.slot_3 = null
+    if (r_slot === 1)
+       r.data.slot_1 = null
+    if (r_slot === 2)
+      r.data.slot_2 = null
+    if (r_slot === 3)
       r.data.slot_3 = null
     axios.put('http://localhost:59316/api/Booking/Update', r.data, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
     document.getElementById(id + " cancel").style.display = "none"
@@ -88,7 +100,7 @@ function CancelAppointment() {
                      :
                      <>{data.rescheduled_Slot === 1 ? <>9.00 A.M to 12.00 P.M</> : data.rescheduled_Slot === 2 ? <>1.00 P.M to 4.00 P.M</> : <>5.00 P.M to 8.00 P.M</>}</>
                       }</td>
-                    <td key={data.id + 3}> <button key={data.id + 4} onClick={() => cancel(data.date, data.slot, data.id)} type="button" className="btn btn-danger">
+                    <td key={data.id + 3}> <button key={data.id + 4} onClick={() => cancel(data.date, data.slot, data.id, data.rescheduled_Date, data.rescheduled_Slot)} type="button" className="btn btn-danger">
                       Cancel Appointment
                     </button></td>
                   </tr>

@@ -41,10 +41,14 @@ function Register(props) {
       const res = await axios.post('http://localhost:59316/api/User/Register', user)
       setUser(username)
       setToken(res.data.token)
+      sessionStorage.setItem("user", username)
+      sessionStorage.setItem("t", res.data.token)
+      sessionStorage.setItem("n", "0")
       if (username === 'admin')
         setRole("Admin")
       else
         setRole("User")
+
       nav("/UserPanel")
     }
   }
@@ -146,7 +150,7 @@ function Register(props) {
       noErr = false
     }
     else {
-      if (name.length === 0) {
+      if (dob.length === 0) {
         printError("dobError", "*Please enter your dob");
         noErr = false
       } else {
@@ -194,12 +198,22 @@ function Register(props) {
         document.getElementById("passNum").style.color = "green"
       else
         document.getElementById("passNum").style.color = "red"
-      }
+    }
+    else
+      document.getElementById("passwordError").style.display = "none"
 
   }
   function passValidOff() {
     document.getElementById("passRegX").style.display = "none"
   }
+
+  const disablePastDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate() + 0).padStart(2, "0");
+    const mm = String(today.getMonth() + 0).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
 
   function printError(id, message) {
     document.getElementById(id).innerHTML = message;
@@ -249,7 +263,7 @@ function Register(props) {
                       placeholder="DOB *"
                       onFocus={(e) => e.currentTarget.type = "date"}
                       onBlur={(e) => e.currentTarget.type = "text"}
-
+                      max={disablePastDate()}
                       value={dob} onChange={(e) => setDOB(e.target.value)}
                     />
                     <p id="dobError" className="Err">

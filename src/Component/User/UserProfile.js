@@ -32,25 +32,21 @@ function UserProfile() {
                         </div>
                         <div className="flex-grow-1 ms-3">
 
-                          <div className="p-2 mb-2 mt-4"
+                          <div className="p-2 mt-5"
                           >
                             <div>
-                              <p className="small text-muted mb-1">Name: {details.name}</p>
+                              <p>Name: {details.name}</p>
 
                             </div>
 
-                            <div className="px-3">
-                              <p className="small text-muted mb-1">Email: {details.email}</p>
+                            <div>
+                              <p>Email: {details.email}</p>
 
                             </div>
                             <div>
-                              <p className="small text-muted mb-1">Phone No : {details.phone}</p>
+                              <p>Phone No : {details.phone}</p>
 
                             </div>
-                          </div>
-                          <div className="d-flex pt-1">
-
-                            <button type="button" className="btn btn-outline-primary me-1 flex-grow-1" onClick={()=>nav("MyBookings")}>My Booking</button>
                           </div>
                         </div>
                       </div>

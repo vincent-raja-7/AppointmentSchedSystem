@@ -29,6 +29,14 @@ function Bookappointment() {
     return yyyy + "-" + mm + "-" + dd;
   };
 
+  const oneMonth = () => {
+    const today = new Date();
+    const dd = String(today.getDate() + 1).padStart(2, "0");
+    const mm = String(today.getMonth() + 2).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
+
   async function getSlots() {
     const r = await axios.get(`http://localhost:59316/api/Booking/GetByDate?date=${date}`, { headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
     .catch(function (error) {
@@ -68,6 +76,7 @@ function Bookappointment() {
                       onFocus={(e) => e.currentTarget.type = "date"}
                       onBlur={(e) => e.currentTarget.type = "text"}
                       min={disablePastDate()}
+                      max={oneMonth()}
                       value={date} onChange={(e) => setDate(e.target.value)}
                     />
 
@@ -76,7 +85,7 @@ function Bookappointment() {
                   <div id='noslot'>
                     <b>This date is not Available !!! </b>
                     <br/>
-                    <b>Please select a date in this month.</b>
+                    <b>Please select a date in the next 30 days.</b>
                   </div>
                 </div>
               </div>

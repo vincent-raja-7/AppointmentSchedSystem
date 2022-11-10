@@ -42,7 +42,7 @@ function UserPanel() {
             toast.info("You have an Appointment today at  " + time, {
                 position: "bottom-right",
                 autoClose: 5000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,

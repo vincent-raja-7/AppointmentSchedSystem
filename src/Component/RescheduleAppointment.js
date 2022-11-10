@@ -9,6 +9,7 @@ function RescheduleAppointment() {
     const [oldDate, setOldDate] = useState("")
     const [oldId, setOldId] = useState("")
     const [oldSlot, setOldSlot] = useState("")
+  
     async function getAppointments(){
       const r= await axios.get(`http://localhost:59316/api/AppEntry/FindByUserAndStatus?user=${sessionStorage.getItem("user")}&status=Sucess`,{ headers: { "Authorization": "Bearer " + sessionStorage.getItem("t") } })
       setAppointments(r.data)

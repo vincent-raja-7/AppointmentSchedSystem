@@ -3,9 +3,6 @@ import './App.css';
 import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom'
 import Bookappointment from './Component/Bookappointment';
 import CancelAppointment from './Component/CancelAppointment';
-import AppointmentStatus from './Component/AppointmentStatus';
-import AppointmentBooking from './Component/AppointmentBooking';
-import AllBooking from './Component/AllBooking';
 import Register from './Component/Register';
 import Login from './Component/Login';
 import React, { useState } from 'react';
@@ -14,7 +11,6 @@ import AdminPanel from './Component/Admin/AdminPanel';
 import RescheduleAppointment from './Component/RescheduleAppointment';
 import UserProfile from './Component/User/UserProfile';
 import Addavailability from './Component/Admin/Addavailability';
-import MyBooking from './Component/User/MyBooking';
 export const UserContext = React.createContext()
 function App() {
   const [user, setUser]=useState('')
@@ -29,7 +25,6 @@ function App() {
         <Route path="/Register" element={<Register/>}></Route>
         <Route path="/UserPanel" element={<UserPanel/>}></Route>
         <Route path="/Profile" element={<UserProfile/>}></Route> 
-        <Route path="Profile/MyBookings" element={<MyBooking/>}></Route>  
         <Route path="/BookAppointment" element={<Bookappointment/>}></Route>
         <Route path="/CancelAppointment" element={<CancelAppointment/>}></Route>
         <Route path="/RescheduleAppointment" element={<RescheduleAppointment/>}></Route>

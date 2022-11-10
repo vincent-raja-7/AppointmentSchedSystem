@@ -27,13 +27,6 @@ function AdminPanel() {
                                     >
                                         Add Availability
                                     </button>
-
-                                    <button
-                                        className="btn mx-3 btn-outline-primary me-1 flex-grow-1"
-                                        type="submit"
-                                    >
-                                        Show All Appointment
-                                    </button>
                                 </div>
                             </div>
                         </div>
